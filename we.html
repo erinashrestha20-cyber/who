@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      display: flex;      /* uses flexbox to arrange element*/  
+      flex-direction: column;
+      justify-content: center; /*centers content horizontally*/
+      align-items: center;  /*centers content vertically*/
+      height: 100vh; /*makes body take up the full height of the screen*/
+      background-color: ; /* background-color*/
+      color: white;  /*color of text*/
+      font-family: monospace;  /*uses digital style font*/
+      font-size: 100px;   /*makes text large*/
+    }
+
+      #message {
+      font-size: 40px;
+      margin-bottom: 20px;
+      position: relative;
+      animation: sparkle 2s ease-in-out;
+    }
+
+    @keyframes sparkle {
+      0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; opacity: 0; }
+      50% { text-shadow: 0 0 20px #eeeeed, 0 0 30px #f3f1ec; opacity: 1; }
+      100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; opacity: 1; }
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="message"></div>
+  <div id="clock"></div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();     // creates a new date
+      let hours = String(now.getHours()).padStart(2, '0');  // extracts hours,minutes and seconds
+      let minutes = String(now.getMinutes()).padStart(2, '0'); //padstart ensures two digits(09) instead of onl 9 
+      let seconds = String(now.getSeconds()).padStart(2, '0'); // same as above
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;  // makes update to html with the time
+
+      let greeting;
+        if (now.getHours() < 12) {
+          greeting = "Good Morning, Erina and Pratikshya!";
+        } else if (now.getHours() < 18) {
+          greeting = "Good Afternoon, Erina and Pratikshya!";
+        } else {
+          greeting = "Good Night, Erina and Pratikshya!";
+        }
+       
+      const message = document.getElementById('message');
+      message.textContent = greeting;
+      message.style.animation = 'none';
+      message.offsetHeight; // trigger reflow
+      message.style.animation = 'sparkle 2s ease-in-out';
+
+      // Convert to 12-hour format with AM/PM
+      let ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // 0 becomes 12
+
+            
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+     
+    }
+
+
+    setInterval(updateClock, 1000); // calls the function every second to keep the clock ticking
+    updateClock(); // run once immediately so you don't wait a second before seeing the time
+  </script>
+</body>
+</html>

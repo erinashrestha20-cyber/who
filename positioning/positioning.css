@@ -1,0 +1,41 @@
+.static{
+    position:static;
+    top:100px;
+    right:100px;
+    bottom:100px;
+    left:100px;
+}
+.relative{
+    position:relative;
+    top: 100px;
+    right: 100px;
+    bottom:100px;
+    left:100px;
+}
+.fixed{
+    position:fixed;
+    bottom: 100px;
+    right: 100px;
+}
+div{
+    height:100px;
+    width:100px;
+    border:solid;
+    background-color:aqua;
+}
+.sticky{
+    height: 30px;
+    width: 100%;
+    position: sticky;
+    top:0;
+}
+.children{
+    position:absolute;
+    top:0;
+    right:0;
+}
+.parent{
+    height: 300px;
+    width: 300px;
+    overflow:auto;
+}

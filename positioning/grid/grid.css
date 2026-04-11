@@ -1,0 +1,12 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+    gap: 10px;
+}
+.grid-item{
+    height: 100px;
+    width: 100px;
+    border:solid;
+    text-align: center;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      font-family: monospace;
+      font-size: 100px;
+      transition: background 1s ease; /* smooth background change */
+    }
+    #message {
+      font-size: 40px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #fff;
+    }
+
+     @keyframes sparkle {
+      0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; opacity: 0; }
+      50% { text-shadow: 0 0 20px #fbfbfa, 0 0 30px #fbfaf7; opacity: 1; }
+      100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; opacity: 1; }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="message"></div>
+  <div id="clock"></div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = String(now.getMinutes()).padStart(2, '0');
+      let seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = 
+        `${String(hours).padStart(2, '0')}:${minutes}:${seconds}`;
+
+      let greeting, bgColor;
+      if (hours >= 5 && hours < 12) {
+        greeting = "Good Morning, Erina!";
+        bgColor = "linear-gradient(to bottom, #2C3E50, #000000)"; 
+      } else if (hours >= 12 && hours < 17) {
+        greeting = "Good Afternoon, Erina!";
+        bgColor = "linear-gradient(to bottom, #2C3E50, #000000)";
+      } else if (hours >= 17 && hours < 20) {
+        greeting = "Good Evening, Erina!";
+        bgColor = "linear-gradient(to bottom, #2C3E50, #000000)"; 
+      } else {
+        greeting = "Good Night, Erina!";
+        bgColor = "linear-gradient(to bottom, #2C3E50, #000000)"; // dark night
+      }
+
+      const message = document.getElementById('message');
+      message.textContent = greeting;
+      message.style.animation = 'none';
+      message.offsetHeight; // trigger reflow
+      message.style.animation = 'sparkle 2s ease-in-out';
+
+      // Convert to 12-hour format with AM/PM
+      let ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // 0 becomes 12
+
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+
+      document.getElementById('message').textContent = greeting;
+      document.body.style.background = bgColor;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
