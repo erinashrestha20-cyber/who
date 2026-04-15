@@ -11,67 +11,133 @@
       color: white;
       font-family: monospace;
       font-size: 100px;
-      transition: background 1s ease; /* smooth background change */
+      transition: background 1s ease;
+      margin: 0;
+      background-size: cover;
+      background-position: center;
     }
+
     #message {
       font-size: 40px;
       margin-bottom: 20px;
       text-shadow: 0 0 10px #fff;
     }
 
-     @keyframes sparkle {
+    #clock {
+      font-size: 80px;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes sparkle {
       0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; opacity: 0; }
-      50% { text-shadow: 0 0 20px #fbfbfa, 0 0 30px #fbfaf7; opacity: 1; }
+      50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFBF00; opacity: 1; }
       100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; opacity: 1; }
     }
 
+    #extra {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translate(-50%);
+      font-size: 100px;
+      color: white;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      backdrop-filter: blur(5px);
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.4);
+    }
   </style>
 </head>
 <body>
   <div id="message"></div>
   <div id="clock"></div>
+  <div id="extra"></div>
+  <button id="correctBtn" class="btn">Correct Time</button>
+  <button id="resetBtn" class="btn">Reset Time</button>
 
   <script>
-    function updateClock() {
-      const now = new Date();
-      let hours = now.getHours();
-      let minutes = String(now.getMinutes()).padStart(2, '0');
-      let seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('clock').textContent = 
-        `${String(hours).padStart(2, '0')}:${minutes}:${seconds}`;
+    let manualTime = null;
 
-      let greeting, bgColor;
+    function updateClock() {
+      const now = manualTime ? new Date(manualTime) : new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      let greeting, bgImage;
+
       if (hours >= 5 && hours < 12) {
-        greeting = "Good Morning, Erina!";
-        bgColor = "linear-gradient(to bottom, #2C3E50, #000000)"; 
+        greeting = "Good Morning, Erina & Pratikshya!";
+        bgImage = "linear-gradient(to bottom, rgba(255,216,155,0.6), rgba(25,84,123,0.6)), url('https://images.unsplash.com/photo-1502082553048-f009c37129b9')";
       } else if (hours >= 12 && hours < 17) {
-        greeting = "Good Afternoon, Erina!";
-        bgColor = "linear-gradient(to bottom, #2C3E50, #000000)";
+        greeting = "Good Afternoon, Erina & Pratikshya!";
+        bgImage = "linear-gradient(to bottom, rgba(102,126,234,0.6), rgba(118,75,162,0.6)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb')";
       } else if (hours >= 17 && hours < 20) {
-        greeting = "Good Evening, Erina!";
-        bgColor = "linear-gradient(to bottom, #2C3E50, #000000)"; 
+        greeting = "Good Evening, Erina & Pratikshya!";
+        bgImage = "linear-gradient(to bottom, rgba(255,107,107,0.6), rgba(44,62,80,0.6)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee')";
       } else {
-        greeting = "Good Night, Erina!";
-        bgColor = "linear-gradient(to bottom, #2C3E50, #000000)"; // dark night
+        greeting = "Good Night, Erina & Pratikshya!";
+        bgImage = "linear-gradient(to bottom, rgba(15,32,39,0.7), rgba(32,58,67,0.7)), url('https://images.unsplash.com/photo-1503264116251-35a269479413')";
       }
 
       const message = document.getElementById('message');
       message.textContent = greeting;
       message.style.animation = 'none';
-      message.offsetHeight; // trigger reflow
+      message.offsetHeight;
       message.style.animation = 'sparkle 2s ease-in-out';
 
-      // Convert to 12-hour format with AM/PM
-      let ampm = hours >= 12 ? 'PM' : 'AM';
+      const ampm = hours >= 12 ? 'PM' : 'AM';
       hours = hours % 12;
-      hours = hours ? hours : 12; // 0 becomes 12
+      hours = hours ? hours : 12;
+      hours = String(hours).padStart(2, '0');
 
       document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+      document.body.style.background = bgImage;
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundPosition = 'center';
+      document.getElementById('extra').textContent = "Clock";
 
-
-      document.getElementById('message').textContent = greeting;
-      document.body.style.background = bgColor;
+      if (manualTime) {
+        manualTime.setSeconds(manualTime.getSeconds() + 1);
+      }
     }
+
+    document.getElementById('correctBtn').addEventListener('click', () => {
+      const userInput = prompt("Enter correct time (HH:MM:SS AM/PM):", "07:30:00 AM");
+      if (userInput) {
+        const parts = userInput.match(/(\d+):(\d+):(\d+)\s?(AM|PM)/i);
+        if (parts) {
+          let h = parseInt(parts[1], 10);
+          const m = parseInt(parts[2], 10);
+          const s = parseInt(parts[3], 10);
+          const ampm = parts[4].toUpperCase();
+          if (ampm === "PM" && h < 12) h += 12;
+          if (ampm === "AM" && h === 12) h = 0;
+          manualTime = new Date();
+          manualTime.setHours(h, m, s);
+        } else {
+          alert("Invalid format. Please use HH:MM:SS AM/PM.");
+        }
+      }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      manualTime = null; // clears manual correction
+      alert("Clock reset to system time!");
+    });
 
     setInterval(updateClock, 1000);
     updateClock();
