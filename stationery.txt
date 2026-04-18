@@ -1,2 +1,0 @@
-pencil,2.10
-eraser,1.10
