@@ -30,9 +30,12 @@ A polished digital clock web project with **time-based greetings**, **changing b
 
 ## 🎨 How to Customize
 - **DC.html** → Page structure (open in browser)  
-- **themes(contains css)* → Controls layout, glass effect, colors, and fonts  
+## themes folder
+- **themes(contains css)* → Controls layout, glass effect, colors, and fonts 
+## Js folder 
 - **DC.js** → Clock update logic, greeting application, theme switching  
 - **config.js** → Defines theme entries and image sources used by DC.js  
+## assets folder
 - **assets/** → Stores image files referenced in config.js  
 
 ---
@@ -82,4 +85,4 @@ Here are the included themes:
 ---
 
 ## 🌐 Demo
-*(Optional: Add a GitHub Pages or Netlify link here so buyers can preview the clock live.)*
+
