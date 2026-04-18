@@ -1,0 +1,19 @@
+Cool Palette:
+  - Midnight Blue: #0B1F3E
+  - Ice Blue: #7BE4FF
+  - Ocean Teal: #0BA3FF
+
+Classic Palette:
+  - Deep Cocoa: #362514
+  - Antique Gold: #CFA16B
+  - Cream Linen: #F5E0C0
+
+Rich Palette:
+  - Velvet Purple: #4C1D56
+  - Warm Gold: #FFD27F
+  - Bronze Shine: #E2B362
+
+Aesthetic Palette:
+  - Peach Blur: #FFE0B2
+  - Blush Pink: #FF99B4
+  - Soft Shell: #FFF1E1
