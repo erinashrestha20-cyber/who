@@ -1,0 +1,42 @@
+Digital Clock Template License
+==============================
+
+Copyright (c) 2026 [Dylan]
+
+This template is sold under a tiered license model. By purchasing, downloading, or using this template, you agree to the following terms:
+
+------------------------------------------------------------
+1. Personal Use License
+------------------------------------------------------------
+- You may use this template for your own personal projects.
+- You may customize and modify the files for personal use.
+- You may NOT resell, redistribute, or use the template in client or commercial projects.
+
+------------------------------------------------------------
+2. Commercial Use License
+------------------------------------------------------------
+- You may use this template in client projects, business websites, or commercial work.
+- You may customize and modify the files for commercial use.
+- You may NOT resell or redistribute the template itself as a standalone product.
+
+------------------------------------------------------------
+3. Extended / Resale License
+------------------------------------------------------------
+- You may resell, redistribute, or include this template as part of a packaged product.
+- You may customize and modify the files for resale purposes.
+- You may NOT claim authorship of the original template.
+
+------------------------------------------------------------
+General Terms
+------------------------------------------------------------
+-This template is sold as‑is — it works as described, but I don’t guarantee it will fit every use case.
+
+-I’m not responsible for any issues that may arise if you use or modify the template.
+
+-Please only use the template according to the license tier you purchased (Personal, Commercial, or Extended).
+
+------------------------------------------------------------
+License Selection
+------------------------------------------------------------
+Your rights depend on the license tier you purchased (Personal, Commercial, or Extended).
+Please ensure you have purchased the correct license for your intended use.

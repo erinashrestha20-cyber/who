@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  color-scheme: dark;
+  --surface: rgba(10, 10, 20, 0.85);
+  --surface-strong: rgba(255, 255, 255, 0.12);
+  --accent: #00ffff; /* cyan neon */
+  --accent-soft: rgba(0, 255, 255, 0.25);
+  --glass-border: rgba(0, 255, 255, 0.35);
+  --text: #eaffff;
+  --muted: rgba(255, 255, 255, 0.72);
+  --shadow: rgba(0, 255, 255, 0.35);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
+  background: radial-gradient(circle at center, #000000 0%, #0a0a0a 60%, #050505 100%);
+  color: var(--text);
+  overflow: hidden;
+  background-size: 200% 200%;
+  animation: neonPulse 12s ease infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+#clock-root {
+  position: relative;
+  width: min(100%, 920px);
+  margin: 1.5rem;
+  padding: 3rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  border-radius: 32px;
+  border: 2px solid var(--glass-border);
+  background: var(--surface);
+  box-shadow: 0 0 25px var(--accent), 0 0 60px var(--accent-soft);
+}
+
+#greeting {
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 500;
+  text-align: center;
+  color: #ff00ff; /* magenta neon */
+  text-shadow: 0 0 12px #ff00ff, 0 0 24px #ff00ff;
+}
+
+#time-display {
+  font-size: clamp(4rem, 10vw, 8.4rem);
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow:
+    0 0 16px var(--accent),
+    0 0 32px var(--accent),
+    0 0 64px var(--accent);
+}
+
+#period-label,
+#date-display {
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-shadow: 0 0 8px var(--accent-soft);
+}
+
+#offset-badge {
+  font-size: 0.95rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid var(--accent);
+  padding: 0.9rem 1.2rem;
+  border-radius: 999px;
+  display: none;
+  margin-top: 0.4rem;
+  text-shadow: 0 0 8px var(--accent);
+}
+
+/* Inputs */
+.time-part {
+  width: 72px;
+  background: rgba(0, 255, 255, 0.08);
+  border: 1px solid var(--accent);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.95rem 0.6rem;
+  border-radius: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.time-part:focus {
+  outline: none;
+  border-color: #ff00ff;
+  box-shadow: 0 0 12px #ff00ff;
+}
+
+/* Buttons */
+#ampm-toggle,
+.clock-btn,
+.confirm-btn {
+  border-radius: 14px;
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-shadow: 0 0 6px var(--accent);
+}
+
+#ampm-toggle:hover,
+.clock-btn:hover,
+.confirm-btn:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 12px var(--accent), 0 0 24px var(--accent);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  #time-display {
+    font-size: clamp(3.4rem, 20vw, 6rem);
+  }
+  #greeting {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+  }
+}

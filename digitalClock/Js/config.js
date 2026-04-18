@@ -1,6 +1,6 @@
 // config.js
 const CLOCK_CONFIG = {
-  username: "Shri", // Buyer can replace with their name
+  username: "Sir/Mam", // Buyer can replace with their name
 
   themes: {
     morning: {
@@ -21,5 +21,5 @@ const CLOCK_CONFIG = {
     }
   },
 
-  defaultStyle: "rainbow-glow" // Options: "rainbow-glow", "soft-fade"
+  defaultStyle: "radial-gradient" 
 };

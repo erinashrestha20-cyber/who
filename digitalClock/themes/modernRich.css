@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Playfair+Display:wght@500;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  color-scheme: dark;
+  --surface: rgba(20, 20, 30, 0.85);
+  --surface-strong: rgba(255, 255, 255, 0.08);
+  --accent: #d4af37; /* rich gold */
+  --accent-soft: rgba(212, 175, 55, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --text: #fdfdfd;
+  --muted: rgba(255, 255, 255, 0.65);
+  --shadow: rgba(212, 175, 55, 0.35);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #000000 100%);
+  color: var(--text);
+  overflow: hidden;
+}
+
+#clock-root {
+  position: relative;
+  width: min(100%, 920px);
+  margin: 1.5rem;
+  padding: 3rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  border-radius: 28px;
+  border: 1px solid var(--glass-border);
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 80px var(--accent-soft);
+}
+
+#greeting {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 700;
+  text-align: center;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 12px var(--accent-soft);
+}
+
+#time-display {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 700;
+  color: var(--text);
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.25),
+    0 0 24px var(--accent-soft);
+}
+
+#period-label,
+#date-display {
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#offset-badge {
+  font-size: 0.9rem;
+  color: var(--accent);
+  background: rgba(30, 30, 40, 0.85);
+  border: 1px solid var(--accent);
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  display: none;
+  margin-top: 0.4rem;
+  text-shadow: 0 0 8px var(--accent-soft);
+}
+
+/* Inputs */
+.time-part {
+  width: 72px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.9rem 0.6rem;
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.time-part:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-soft);
+}
+
+/* Buttons */
+#ampm-toggle,
+.clock-btn,
+.confirm-btn {
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.9rem 1.4rem;
+  transition: all 0.25s ease;
+}
+
+#ampm-toggle:hover,
+.clock-btn:hover,
+.confirm-btn:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 12px var(--accent), 0 0 24px var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  #time-display {
+    font-size: clamp(3rem, 18vw, 5.5rem);
+  }
+  #greeting {
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+  }
+}

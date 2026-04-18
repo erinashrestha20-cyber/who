@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  color-scheme: light;
+  --surface: #ffffff;
+  --surface-strong: #f2f2f2;
+  --accent: #333333;
+  --accent-soft: #666666;
+  --glass-border: #dddddd;
+  --text: #222222;
+  --muted: #777777;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif, Arial, Helvetica, sans-serif;
+  background: #f9f9f9;
+  color: var(--text);
+  overflow: hidden;
+}
+
+#clock-root {
+  position: relative;
+  width: min(100%, 920px);
+  margin: 1.5rem;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  background: var(--surface);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+#greeting {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 500;
+  text-align: center;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+#time-display {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+}
+
+#period-label,
+#date-display {
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#offset-badge {
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: var(--surface-strong);
+  border: 1px solid var(--glass-border);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  display: none;
+  margin-top: 0.4rem;
+}
+
+.time-part {
+  width: 64px;
+  background: var(--surface-strong);
+  border: 1px solid var(--glass-border);
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.8rem 0.5rem;
+  border-radius: 8px;
+}
+
+.time-part:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#ampm-toggle,
+.clock-btn,
+.confirm-btn {
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  background: var(--surface-strong);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.8rem 1.2rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+#ampm-toggle:hover,
+.clock-btn:hover,
+.confirm-btn:hover {
+  background: #eaeaea;
+  border-color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  #time-display {
+    font-size: clamp(2.4rem, 16vw, 4.5rem);
+  }
+  #greeting {
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+  }
+}

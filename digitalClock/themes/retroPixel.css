@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  color-scheme: dark;
+  --surface: #111;
+  --surface-strong: #222;
+  --accent: #00ff00; /* neon green pixel accent */
+  --accent-soft: rgba(0, 255, 0, 0.25);
+  --glass-border: #00ff00;
+  --text: #f5f5f5;
+  --muted: #aaa;
+  --shadow: rgba(0, 255, 0, 0.35);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  background: #000;
+  color: var(--text);
+  overflow: hidden;
+}
+
+#clock-root {
+  position: relative;
+  width: min(100%, 920px);
+  margin: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 4px solid var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 20px var(--accent);
+}
+
+/* Greeting */
+#greeting {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  text-align: center;
+  color: var(--accent);
+  text-shadow: 2px 2px #000;
+}
+
+/* Time display */
+#time-display {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: #ff0000; /* red pixel digits */
+  text-shadow: 2px 2px #000;
+  letter-spacing: 0.15em;
+}
+
+/* Date + period */
+#period-label,
+#date-display {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-shadow: 1px 1px #000;
+}
+
+#offset-badge {
+  font-size: 0.8rem;
+  color: #fff;
+  background: #222;
+  border: 2px dashed var(--accent);
+  padding: 0.6rem 1rem;
+  border-radius: 0;
+  display: none;
+  margin-top: 0.4rem;
+}
+
+/* Inputs */
+.time-part {
+  width: 60px;
+  background: #000;
+  border: 2px solid #ff00ff;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.6rem;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.time-part:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 8px #00ffff;
+}
+
+/* Buttons */
+#ampm-toggle,
+.clock-btn,
+.confirm-btn {
+  border: 3px solid #ffff00;
+  background: #000;
+  color: #ffff00;
+  font-family: 'Press Start 2P', monospace;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#ampm-toggle:hover,
+.clock-btn:hover,
+.confirm-btn:hover {
+  background: #ffff00;
+  color: #000;
+  box-shadow: 0 0 10px #ffff00;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  #time-display {
+    font-size: clamp(2rem, 12vw, 3.5rem);
+  }
+  #greeting {
+    font-size: clamp(1rem, 4vw, 1.6rem);
+  }
+}
