@@ -69,11 +69,11 @@ Screenshots are available in `/Screenshots/`:
 
 ## 🌐 Demo
 View the live clock here:  
-[Digital Clock Demo](https://yourusername.github.io/digital-clock/)
+[Digital Clock Demo](https://erinashrestha20-cyber.github.io/erina/)
 
 ## 📂 Source Code
 Explore the full project files:  
-[GitHub Repository](https://github.com/yourusername/digital-clock)
+[GitHub Repository](https://github.com/erinashrestha20-cyber/erina)
 
 ---
 
