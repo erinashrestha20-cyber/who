@@ -1,0 +1,115 @@
+
+ :root{
+    --primary: #34cfdd;
+    --primary-dark: #1e73be;
+    --dark: #0f1b2d;
+    --text: #1a2332;
+    --muted: #6b7785;
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --border: #e5eaf0;
+    --accent: #ff6b6b;
+
+    --radius-sm: 8px;
+    --radius: 16px;
+
+    --shadow-sm: 0 2px 8px rgba(15, 27, 45, 0.06);
+    --shadow: 0 10px 30px rgba(15, 27, 45, 0.1);
+    --shadow-hover: 0 20px 40px rgba(15, 27, 45, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0 ;
+    box-sizing: border-box;    /* means that we are starting styling from starting */
+} 
+
+ body{
+       
+   font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    Arial,
+    sans-serif;
+  font-size: 14px;
+  /* Subtle background gradient instead of plain white */
+  background: linear-gradient(135deg, #f4f7fb 0%, #e8eff7 100%);
+  color: var(--text);
+  line-height: 1.6; /* gap between two line*/
+  min-height: 100vh; /* make height of viewport occupied by body*/
+} 
+
+::selection{
+    background: var(--primary);
+    color: #fff;
+}
+
+nav{
+    /* stays at top while you scroll */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: linear-gradient(135deg, #0f1b2d 0%, #1a2a4a 100%);
+    padding: 14px 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none; /* dropped the underline — looks cleaner */
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo::before{
+    content:"✨🎧";
+    font-size: 22px;
+}
+
+.nav-links{
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a{
+    position: relative; /* needed for ::after underline */
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 0;
+    transition: color 0.2s ease;
+}
+.nav-links a:hover{
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.nav-links a::after{
+    content:"";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px; /* line under the hover effect*/
+    background: var(--primary);
+    transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after{
+    width: 100%
+}
+
+
+

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloom Within | 100 Healing Prompts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { margin:0; overflow:hidden; background: #fff0f5; }
+    #root { width:100vw; height:100vh; }
+
+    .stage {
+      position:relative;
+      width:100%;
+      height:100%;
+      background: radial-gradient(circle at 50% 20%, #ffffff 0%, #fff0f5 30%, #ffe4ec 70%, #ffd1dc 100%);
+      font-family:'Inter', sans-serif;
+    }
+
+    .center {
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      text-align:center;
+      width:85%;
+      max-width: 700px;
+    }
+
+    .brand {
+      position:absolute;
+      top:40px;
+      width:100%;
+      text-align:center;
+      font-size:13px;
+      font-weight: 500;
+      letter-spacing:0.35em;
+      text-transform: uppercase;
+      opacity:0.4;
+      color:#c9184a;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(28px, 6vw, 58px);
+      letter-spacing: -0.5px;
+      line-height: 1.3;
+      color: #590d22;
+      margin-bottom: 15px;
+    }
+
+    .sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 3.5vw, 28px);
+      font-weight: 400;
+      color: #800f2f;
+      opacity: 0.9;
+      min-height: 1.5em;
+    }
+
+    /* THE CONVERSION MAGIC: This section is hidden until typing finishes */
+    .offer-section {
+      margin-top: 45px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 1.5s ease, transform 1.5s ease;
+      pointer-events: none; /* Prevents clicking while invisible */
+    }
+
+    .offer-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .soft-transition {
+      font-size: clamp(14px, 2vw, 16px);
+      font-weight: 300;
+      color: #a4133c;
+      opacity: 0.8;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto 25px auto;
+    }
+
+    .value-prop {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #800f2f;
+      opacity: 0.6;
+      margin-bottom: 20px;
+    }
+
+    .cta {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 17px;
+      color: #fff;
+      background: linear-gradient(135deg, #FF007A, #FF7EB3);
+      padding: 16px 42px;
+      border-radius: 999px;
+      display: inline-block;
+      box-shadow: 0 10px 25px rgba(255, 0, 122, 0.25);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      border: none;
+    }
+
+    .cta:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(255, 0, 122, 0.35);
+    }
+
+    .cta-meta {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.6;
+      margin-top: 14px;
+      color: #800f2f;
+      letter-spacing: 0.5px;
+    }
+
+    .cursor {
+      animation: blink 1s step-end infinite;
+      color: #FF007A;
+      font-weight: 100;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+const HOOK = "We were a story I thought would never end, ";
+const QUESTION = "until you wrote the last chapter without me.";
+
+function useCinematicTyping(text) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (index >= text.length) return;
+    const char = text[index];
+    let delay = 90; 
+    if (char === "." || char === "…") delay = 600;
+    if (char === ",") delay = 400;
+    delay += Math.random() * 30;
+
+    const timeout = setTimeout(() => setIndex(prev => prev + 1), delay);
+    return () => clearTimeout(timeout);
+  }, [index, text]);
+
+  return text.slice(0, index);
+}
+
+function App() {
+  const typed = useCinematicTyping(QUESTION);
+  // Detect when typing is completely finished
+  const isTypingDone = typed.length === QUESTION.length;
+
+  return (
+    <div className="stage">
+      <div className="brand">Bloom Within</div>
+
+      <div className="center">
+        <div className="headline">{HOOK}</div>
+
+        <div className="sub">
+          {typed}<span className="cursor">|</span>
+        </div>
+
+        {/* THIS IS THE SALES ENGINE */}
+        <div className={`offer-section ${isTypingDone ? 'visible' : ''}`}>
+          
+          <div className="soft-transition">
+            Therapy is great, but it doesn't sit with you at 2 AM.<br/>
+            I made this for the nights you don't know what to do with your hands.
+          </div>
+
+          <div className="value-prop">
+            100 Prompts • One a day • 100 days of choosing yourself
+          </div>
+
+          {/* 🔴 REPLACE THE HREF BELOW WITH YOUR ACTUAL LINK 🔴 */}
+          <a href="https://whop.com/joined/heal-rewrite/products/100-healing-prompts-after-breakup/" target="_blank" rel="noopener noreferrer" className="cta">
+            start healing →
+          </a>
+
+          <div className="cta-meta">
+            Instant PDF & Notion Download • $19
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

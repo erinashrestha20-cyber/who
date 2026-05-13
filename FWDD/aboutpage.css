@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* Header */
+header{
+    background-color: lightblue;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation link */
+nav a{
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+nav a:hover{
+    color: white;
+}
+
+/* Main container */
+.aboutpage{
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Headings */
+h1{
+    margin: 0;
+}
+
+h2{
+    color: black;
+    margin-top: 20px;
+}
+
+/* Paragraph */
+p{
+    line-height: 1.6;
+}
+
+/* Images */
+img{
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    height: 50%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+/* Find section */
+.find{
+    background-color: #eaf7fb;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+/* List */
+ul{
+    padding-left: 20px;
+}
+
+/* Bottom link */
+body > a{
+    display: block;
+    text-align: center;
+    margin: 20px;
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+body > a:hover{
+    color: pink;
+}

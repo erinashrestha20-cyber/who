@@ -1,0 +1,142 @@
+nav{
+    background-color: #1a1a2e;
+    padding:10px 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.nav-links{
+    display: flex;
+     gap: 20px;   /* mixture of gap between row and columns */
+}
+
+.nav-links a{            /* it is used to style anchor*/    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.container{
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.product-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.product-image-box{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #040c1a;
+    border-radius: 4px;
+}
+
+.product-image-box img{
+    max-width: 100%;
+    height: auto;
+}
+
+.product-info{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border:#040c1a 0.3 solid;
+}
+
+.product-title{
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1a1a2e;
+}
+
+.product-price{
+    color: green;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+button {
+    color:white;
+    background-color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+.specifications{
+    margin-top: 30px;
+
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td{
+    border: 1px solid #040c1a;
+    padding: 12px;
+    text-align: left;
+}
+
+th{
+    background-color: #1a1a2e;
+    color: white;
+}
+
+.contact-form{
+    margin-top: 30px;
+    
+    padding: 20px;
+    border: 1px solid #040c1a;
+    background-color: #eff6ff;
+}
+
+form{
+    display:grid;
+    gap:12px;
+}
+
+input, textarea{
+    padding: 10px;
+    border: 1px solid #040c1a;
+    border-radius: 4px;
+}
+
+footer{
+    color: white;
+    background-color: #1a1a2e;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer a{
+    color: #38bdf8;
+    text-decoration: none;
+    margin: 0 8px;
+}
+.frame{
+    display:flex;
+    gap:20px;
+    align-content: center;
+}

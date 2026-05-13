@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NepalAlert Onboarding</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --red: #C0392B;
+      --redLight: #E74C3C;
+      --blue: #1A5276;
+      --blueLight: #2980B9;
+      --green: #1E8449;
+      --greenLight: #27AE60;
+      --bg: #F7F3EE;
+      --card: #FFFFFF;
+      --text: #1C1C1C;
+      --muted: #7F8C8D;
+      --border: #DDD8D0;
+      --inputBg: #F0EBE3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--card);
+      border-radius: 24px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+    }
+
+    .mountains {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0.08;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .step-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--border);
+    }
+
+    .step-label.active {
+      color: var(--red);
+    }
+
+    .step-label.done {
+      color: var(--green);
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 26px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--border);
+      transition: 0.3s;
+    }
+
+    .dot.active {
+      width: 20px;
+      background: var(--red);
+    }
+
+    .screen {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      font-size: 30px;
+    }
+
+    h1, h2 {
+      font-family: 'DM Serif Display', serif;
+      color: var(--text);
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field-top {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .tag {
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .required {
+      background: #FDECEA;
+      color: var(--red);
+    }
+
+    .optional {
+      background: #EAF4FB;
+      color: var(--blue);
+    }
+
+    .filled {
+      background: #EAFAF1;
+      color: var(--green);
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--blueLight);
+    }
+
+    input[readonly] {
+      background: var(--inputBg);
+      color: var(--muted);
+    }
+
+    .help {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 12px;
+      background: var(--red);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn.green {
+      background: var(--green);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .divider {
+      margin: 14px 0 4px;
+      color: var(--border);
+      font-size: 12px;
+    }
+
+    .link {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .otp-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .otp-box {
+      width: 44px;
+      height: 52px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      border-radius: 10px;
+      border: 2px solid var(--border);
+      background: var(--inputBg);
+    }
+
+    .success-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #EAFAF1;
+      border: 3px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 36px;
+    }
+
+    .preview {
+      background: var(--inputBg);
+      border-radius: 16px;
+      padding: 16px;
+      margin: 24px 0;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .preview-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .map-box {
+      height: 120px;
+      background: #D5ECD4;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      font-size: 12px;
+      color: #085041;
+    }
+
+    .marker {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+    }
+
+    .fab {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 4px;
+      color: white;
+      font-size: 22px;
+      box-shadow: 0 4px 14px rgba(192,57,43,0.4);
+    }
+
+    .small {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <svg class="mountains" viewBox="0 0 400 180">
+      <polygon points="0,180 80,60 160,120 240,30 320,100 400,50 400,180" fill="#C0392B"/>
+      <polygon points="0,180 60,90 140,140 220,55 300,110 380,70 400,80 400,180" fill="#1A5276"/>
+    </svg>
+
+    <div class="content">
+
+      <div class="steps">
+        <div class="step-label active">Phone</div>
+        <div class="step-label">Verify</div>
+        <div class="step-label">Profile</div>
+        <div class="step-label">Done</div>
+      </div>
+
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- SCREEN 1 -->
+      <div class="screen active" id="screen1">
+
+        <div class="logo">🇳🇵</div>
+
+        <h1>Welcome to NepalAlert</h1>
+
+        <p class="subtitle">
+          Report local problems directly to your government — roads, water, power, and more.
+        </p>
+
+        <div class="field">
+          <div class="field-top">
+            <label>Mobile number</label>
+            <span class="tag required">required</span>
+          </div>
+
+          <input
+            type="tel"
+            id="phone"
+            placeholder="98XXXXXXXX"
+            maxlength="10"
+          />
+        </div>
+
+        <p class="help">
+          🔒 Your number is only used to track your reports. It will never be shown publicly.
+        </p>
+
+        <button class="btn" onclick="goToOTP()">
+          Send OTP →
+        </button>
+
+        <div class="center divider">──── or ────</div>
+
+        <div class="center">
+          <button class="link" onclick="goToSuccess()">
+            Continue without login (anonymous)
+          </button>
+        </div>
+
+      </div>
+
+      <!-- SCREEN 2 -->
+      <div class="screen" id="screen2">
+
+        <button class="link" onclick="backToPhone()">← Back</button>
+
+        <h2>Enter verification code</h2>
+
+        <p class="help">
+          A 6-digit code was sent to <strong id="phoneDisplay"></strong>
+        </p>
+
+        <div class="otp-boxes">
+          <input class="otp-box" maxlength="1">
+          <input class="otp-box" maxlength="1">
+          <input class="otp-box" maxlength="1">
+          <input class="otp-box" maxlength="1">
+          <input class="otp-box" maxlength="1">
+          <input class="otp-box" maxlength="1">
+        </div>
+
+        <button class="btn" onclick="goToProfile()">
+          Verify Code →
+        </button>
+
+      </div>
+
+      <!-- SCREEN 3 -->
+      <div class="screen" id="screen3">
+
+        <div style="font-size:13px;color:var(--green);font-weight:700;margin-bottom:4px;">
+          ✓ Phone verified
+        </div>
+
+        <h2>Set up your profile</h2>
+
+        <p class="help">
+          This helps route your reports to the correct government department.
+        </p>
+
+        <div class="field">
+          <div class="field-top">
+            <label>Your name</label>
+            <span class="tag optional">optional</span>
+          </div>
+
+          <input type="text" placeholder="e.g. Ram Bahadur">
+        </div>
+
+        <div class="field">
+          <div class="field-top">
+            <label>Your ward</label>
+            <span class="tag required">required</span>
+          </div>
+
+          <select>
+            <option>Select your ward…</option>
+            <option>Ward 1 — Kathmandu</option>
+            <option>Ward 2 — Kathmandu</option>
+            <option>Ward 3 — Kathmandu</option>
+            <option>Ward 4 — Kathmandu</option>
+            <option>Ward 5 — Kathmandu</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <div class="field-top">
+            <label>Phone number</label>
+            <span class="tag filled">auto-filled</span>
+          </div>
+
+          <input type="text" id="savedPhone" readonly>
+        </div>
+
+        <button class="btn green" onclick="goToSuccess()">
+          Save and continue →
+        </button>
+
+      </div>
+
+      <!-- SCREEN 4 -->
+      <div class="screen" id="screen4">
+
+        <div class="success-circle">✓</div>
+
+        <h2 class="center">You're all set!</h2>
+
+        <p class="help center">
+          📍 Kathmandu
+        </p>
+
+        <div class="preview">
+
+          <div class="preview-title">
+            HOME SCREEN PREVIEW
+          </div>
+
+          <div class="map-box">
+
+            🗺 Map of Nepal
+
+            <div class="marker" style="left:40%;top:35%;background:#C0392B;"></div>
+            <div class="marker" style="left:65%;top:55%;background:#E67E22;"></div>
+            <div class="marker" style="left:25%;top:60%;background:#27AE60;"></div>
+
+          </div>
+
+          <div class="center">
+            <div class="fab">+</div>
+            <div class="small">
+              Tap to report a problem
+            </div>
+          </div>
+
+        </div>
+
+        <button class="btn">
+          Go to NepalAlert →
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const screens = [
+      document.getElementById("screen1"),
+      document.getElementById("screen2"),
+      document.getElementById("screen3"),
+      document.getElementById("screen4")
+    ];
+
+    const labels = document.querySelectorAll(".step-label");
+    const dots = document.querySelectorAll(".dot");
+
+    function showScreen(index) {
+      screens.forEach((s, i) => {
+        s.classList.toggle("active", i === index);
+      });
+
+      labels.forEach((l, i) => {
+        l.classList.remove("active", "done");
+
+        if (i < index) l.classList.add("done");
+        else if (i === index) l.classList.add("active");
+      });
+
+      dots.forEach((d, i) => {
+        d.classList.toggle("active", i === index);
+      });
+    }
+
+    function goToOTP() {
+      const phone = document.getElementById("phone").value;
+
+      if (phone.length < 10) {
+        alert("Please enter a valid number");
+        return;
+      }
+
+      document.getElementById("phoneDisplay").innerText = "+977 " + phone;
+      document.getElementById("savedPhone").value = "+977 " + phone;
+
+      showScreen(1);
+    }
+
+    function backToPhone() {
+      showScreen(0);
+    }
+
+    function goToProfile() {
+      showScreen(2);
+    }
+
+    function goToSuccess() {
+      showScreen(3);
+    }
+  </script>
+
+</body>
+</html>

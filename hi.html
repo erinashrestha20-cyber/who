@@ -1,146 +1,199 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8" />
+  <title>100 Healing Prompts After Breakup | Bloom Within</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white;
-      font-family: monospace;
-      font-size: 100px;
-      transition: background 1s ease;
-      margin: 0;
-      background-size: cover;
-      background-position: center;
+    body { margin:0; overflow:hidden; font-family:'Inter', sans-serif; }
+    #root { width:100vw; height:100vh; }
+
+    .stage {
+      position:relative;
+      width:100%;
+      height:100%;
+      color:#fff;
+      /* Soft, feminine dark rose background */
+      background: radial-gradient(circle at center, #3d1222 0%, #260a14 60%, #1a050b 100%);
     }
 
-    #message {
-      font-size: 40px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #fff;
+    .center {
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      text-align:center;
+      width:85%;
+      max-width:600px;
     }
 
-    #clock {
-      font-size: 80px;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    .headline {
+      font-size:42px;
+      font-weight:800;
+      letter-spacing:-1px;
+      color:#ffeef2; 
+      margin-bottom:10px;
     }
 
-    @keyframes sparkle {
-      0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; opacity: 0; }
-      50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFBF00; opacity: 1; }
-      100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff; opacity: 1; }
+    .sub {
+      font-size:24px;
+      line-height:1.5;
+      opacity:0.9;
+      color:#ffb7c5;
+      min-height: 80px; /* Prevents jumping */
     }
 
-    #extra {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translate(-50%);
-      font-size: 100px;
-      color: white;
+    .brand {
+      position:absolute;
+      top:40px;
+      width:100%;
+      text-align:center;
+      font-size:18px;
+      letter-spacing:0.3em;
+      opacity:0.8;
+      color:#e8a0a0;
     }
 
-    .btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 20px;
+    .price-tag {
+      font-size:18px;
+      color:#ffc8d2;
+      margin-bottom:20px;
+      opacity:0.9;
+    }
+
+    .cta {
+      font-size:24px;
+      margin-top:10px;
+      color:#fff;
+      background:linear-gradient(90deg, #ff7eb3, #ff4081);
+      padding:12px 30px;
+      border-radius:999px;
+      display:inline-block;
+      text-decoration:none;
+      box-shadow:0 10px 30px rgba(255, 64, 129, 0.4);
       cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      backdrop-filter: blur(5px);
-      transition: background 0.3s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .btn:hover {
-      background: rgba(255,255,255,0.4);
+    .cta:hover {
+      transform: scale(1.05);
+      box-shadow:0 15px 40px rgba(255, 64, 129, 0.5);
+    }
+
+    .next-btn {
+      background: transparent;
+      border: 1px solid #ffb6c1;
+      color: #ffb6c1;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 20px;
+      transition: all 0.2s;
+    }
+
+    .next-btn:hover {
+      background: rgba(255, 182, 193, 0.1);
+      border-color: #fff;
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <div id="message"></div>
-  <div id="clock"></div>
-  <div id="extra"></div>
-  <button id="correctBtn" class="btn">Correct Time</button>
-  <button id="resetBtn" class="btn">Reset Time</button>
+<div id="root"></div>
 
-  <script>
-    let manualTime = null;
+<script type="text/babel">
+const { useState, useEffect } = React;
 
-    function updateClock() {
-      const now = manualTime ? new Date(manualTime) : new Date();
-      let hours = now.getHours();
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
+// --- THE PRODUCT STRATEGY ---
+// 1. We show a sample of the product to prove its value.
+// 2. We make the user interact (click) to see more.
+// 3. We offer the full solution at the end.
 
-      let greeting, bgImage;
+const SAMPLE_PROMPTS = [
+  "Write a letter to your past self about the strength you didn't know you had.",
+  "List 3 things you can do today that your ex would never have supported.",
+  "Describe your ideal day, one year from now, without them in it.",
+  "What is one boundary you need to set for your healing?",
+  "Write down one thing you are grateful for about this breakup.",
+  "If your future self could hug you right now, what would they say?",
+  "What is a hobby you abandoned that you can restart today?",
+  "Visualize a room filled with love—what color are the walls?"
+];
 
-      if (hours >= 5 && hours < 12) {
-        greeting = "Good Morning, Erina & Pratikshya!";
-        bgImage = "linear-gradient(to bottom, rgba(255,216,155,0.6), rgba(25,84,123,0.6)), url('https://images.unsplash.com/photo-1502082553048-f009c37129b9')";
-      } else if (hours >= 12 && hours < 17) {
-        greeting = "Good Afternoon, Erina & Pratikshya!";
-        bgImage = "linear-gradient(to bottom, rgba(102,126,234,0.6), rgba(118,75,162,0.6)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb')";
-      } else if (hours >= 17 && hours < 20) {
-        greeting = "Good Evening, Erina & Pratikshya!";
-        bgImage = "linear-gradient(to bottom, rgba(255,107,107,0.6), rgba(44,62,80,0.6)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee')";
+function App() {
+  const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
+  const [typedPrompt, setTypedPrompt] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+
+  // Typing effect logic
+  useEffect(() => {
+    setTypedPrompt("");
+    const text = SAMPLE_PROMPTS[currentPromptIndex];
+    let i = 0;
+    setIsTyping(true);
+    
+    const timer = setInterval(() => {
+      if (i < text.length) {
+        setTypedPrompt(text.slice(0, i + 1));
+        i++;
       } else {
-        greeting = "Good Night, Erina & Pratikshya!";
-        bgImage = "linear-gradient(to bottom, rgba(15,32,39,0.7), rgba(32,58,67,0.7)), url('https://images.unsplash.com/photo-1503264116251-35a269479413')";
+        setIsTyping(false);
+        clearInterval(timer);
       }
+    }, 40); // Typing speed
 
-      const message = document.getElementById('message');
-      message.textContent = greeting;
-      message.style.animation = 'none';
-      message.offsetHeight;
-      message.style.animation = 'sparkle 2s ease-in-out';
+    return () => clearInterval(timer);
+  }, [currentPromptIndex]);
 
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12;
-      hours = String(hours).padStart(2, '0');
-
-      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-      document.body.style.background = bgImage;
-      document.body.style.backgroundSize = 'cover';
-      document.body.style.backgroundPosition = 'center';
-      document.getElementById('extra').textContent = "Clock";
-
-      if (manualTime) {
-        manualTime.setSeconds(manualTime.getSeconds() + 1);
-      }
+  const nextPrompt = () => {
+    if (!isTyping) {
+      setCurrentPromptIndex((prev) => (prev + 1) % SAMPLE_PROMPTS.length);
     }
+  };
 
-    document.getElementById('correctBtn').addEventListener('click', () => {
-      const userInput = prompt("Enter correct time (HH:MM:SS AM/PM):", "07:30:00 AM");
-      if (userInput) {
-        const parts = userInput.match(/(\d+):(\d+):(\d+)\s?(AM|PM)/i);
-        if (parts) {
-          let h = parseInt(parts[1], 10);
-          const m = parseInt(parts[2], 10);
-          const s = parseInt(parts[3], 10);
-          const ampm = parts[4].toUpperCase();
-          if (ampm === "PM" && h < 12) h += 12;
-          if (ampm === "AM" && h === 12) h = 0;
-          manualTime = new Date();
-          manualTime.setHours(h, m, s);
-        } else {
-          alert("Invalid format. Please use HH:MM:SS AM/PM.");
-        }
-      }
-    });
+  return (
+    <div className="stage">
+      <div className="brand">BLOOM WITHIN</div>
 
-    document.getElementById('resetBtn').addEventListener('click', () => {
-      manualTime = null; // clears manual correction
-      alert("Clock reset to system time!");
-    });
+      <div className="center">
+        {/* Headline: Clear Product Name */}
+        <div className="headline">
+          100 Healing Prompts After Breakup
+        </div>
 
-    setInterval(updateClock, 1000);
-    updateClock();
-  </script>
+        {/* Interactive Sample Area */}
+        <div className="sub" onClick={nextPrompt}>
+          "{typedPrompt}"{isTyping ? "|" : ""}
+        </div>
+
+        {/* Interaction Hint */}
+        <div style={{ fontSize: '12px', opacity: 0.5, marginTop: '10px' }}>
+          (Click text to see next prompt)
+        </div>
+
+        {/* Price & CTA Section */}
+        <div style={{ marginTop: 40 }}>
+          <div className="price-tag">
+            Only $19.99 • Instant Digital Download
+          </div>
+          
+          {/* 
+             IMPORTANT: Replace 'YOUR_CHECKOUT_LINK' with your actual Gumroad/Etsy link 
+             Example: href="https://gumroad.com/l/yourproduct"
+          */}
+          <a href="https://whop.com/joined/heal-rewrite/products/100-healing-prompts-after-breakup/" className="cta">
+            Get All 100 Prompts →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
 </body>
 </html>
