@@ -1,0 +1,444 @@
+/* ============================================
+   TechShop — Upgraded style.css
+   Same HTML, same selectors — just better CSS.
+   Demonstrates: variables, gradients, shadows,
+   pseudo-elements, transitions, hover, position,
+   responsive media query.
+   ============================================ */
+
+/* ---------- 1. ROOT VARIABLES & RESET ---------- */
+:root {
+  --primary: #26d8e8;
+  --primary-dark: #1e73be;
+  --dark: #0f1b2d;
+  --text: #1a2332;
+  --muted: #6b7785;
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --border: #e5eaf0;
+  --accent: #ff6b6b;
+
+  --radius-sm: 8px;
+  --radius: 16px;
+
+  --shadow-sm: 0 2px 8px rgba(15, 27, 45, 0.06);
+  --shadow: 0 10px 30px rgba(15, 27, 45, 0.1);
+  --shadow-hover: 0 20px 40px rgba(15, 27, 45, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    "Segoe UI",
+    -apple-system,
+    BlinkMacSystemFont,
+    Arial,
+    sans-serif;
+  font-size: 14px;
+  /* Subtle background gradient instead of plain white */
+  background: linear-gradient(135deg, #f4f7fb 0%, #e8eff7 100%);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Pseudo-element: style highlighted text */
+::selection {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ---------- 2. NAVBAR (Flexbox + sticky position) ---------- */
+nav {
+  /* Sticky — stays at the top while you scroll */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  background: linear-gradient(135deg, #0f1b2d 0%, #1a2a4a 100%);
+  padding: 14px 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none; /* dropped the underline — looks cleaner */
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Pseudo-element ::before — adds a headphone icon before the logo text */
+.logo::before {
+  content: "🎧";
+  font-size: 22px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  position: relative; /* needed for ::after underline */
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* Pseudo-element: animated underline on hover */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ---------- 3. CONTAINER ---------- */
+.container {
+  max-width: 600px; /* a touch wider for breathing room */
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+/* ---------- 4. PRODUCT CARD ---------- */
+.product-section {
+  display: flex;
+  gap: 20px;
+  border: none; /* dropped the flat border */
+  padding: 20px;
+  margin-bottom: 16px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  position: relative; /* so we can absolutely position the NEW badge */
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.product-section:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Pseudo-element ::before — adds a "NEW" ribbon badge with pure CSS */
+.product-section::before {
+  content: "NEW";
+  position: absolute;
+  top: 14px;
+  right: -32px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 36px;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- 5. IMAGE BOX ---------- */
+.product-image-box {
+  width: 170px;
+  min-width: 170px;
+  height: 150px;
+  /* Gradient instead of flat color */
+  background: linear-gradient(135deg, #dce8f5 0%, #b2d4f0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 2px 8px rgba(26, 122, 191, 0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Combinator: when card is hovered, the SVG icon scales & rotates */
+.product-section:hover .camera-svg {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.camera-svg {
+  width: 75px;
+  height: 65px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s ease;
+}
+
+/* ---------- 6. PRODUCT INFO ---------- */
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--dark);
+  letter-spacing: -0.3px;
+}
+
+.product-price {
+  /* Gradient text — accent on the price */
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+/* Custom bullet list — drop default discs, use ::before checkmarks */
+.product-features {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.9;
+}
+
+.product-features li {
+  position: relative;
+  padding-left: 22px;
+}
+
+/* Pseudo-element: green checkmark before each feature */
+.product-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #10b981;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ---------- 7. BUY BUTTON ---------- */
+.btn-buy {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  display: block;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 14px rgba(26, 181, 196, 0.35);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.3s ease;
+  margin-top: auto; /* pushes button to bottom of card */
+}
+
+.btn-buy:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, #154d7a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 115, 190, 0.45);
+}
+
+/* Pseudo-class :active — pressed state */
+.btn-buy:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(26, 181, 196, 0.3);
+}
+
+/* ---------- 8. SPECS SECTION ---------- */
+.specs-section {
+  border: none;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--primary); /* accent stripe */
+}
+
+.specs-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Pseudo-element: gear icon before "Specifications Table" */
+.specs-title::before {
+  content: "⚙";
+  color: var(--primary);
+  font-size: 16px;
+}
+
+.specs-row {
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.specs-row span {
+  margin-right: 0;
+  padding: 4px 0;
+}
+
+/* Updated separator between specs — dot instead of pipe */
+.specs-row span:not(:last-child)::after {
+  content: "•";
+  margin: 0 12px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ---------- 9. CONTACT SECTION ---------- */
+.contact-section {
+  border: 2px dashed var(--primary);
+  background: rgba(26, 181, 196, 0.05);
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  transition:
+    background 0.2s ease,
+    border-style 0.2s ease;
+}
+
+.contact-section:hover {
+  background: rgba(26, 181, 196, 0.1);
+  border-style: solid;
+}
+
+.contact-section .question {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.contact-section .contact-link {
+  color: var(--primary-dark);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  margin-left: auto; /* pushes link to right side */
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.contact-section .contact-link:hover {
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+}
+
+.envelope-icon {
+  font-size: 18px;
+  color: var(--primary);
+}
+
+/* ============================================
+   10. RESPONSIVE — MEDIA QUERY
+   On screens narrower than 540px, stack the
+   product card vertically so it fits nicely.
+   ============================================ */
+@media (max-width: 540px) {
+  nav {
+    padding: 12px 16px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .container {
+    margin: 20px auto;
+    padding: 0 12px;
+  }
+
+  /* Stack the product card */
+  .product-section {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .product-image-box {
+    width: 100%;
+    min-width: 0;
+    height: 180px;
+  }
+
+  .product-title {
+    font-size: 18px;
+  }
+
+  .product-price {
+    font-size: 22px;
+  }
+
+  .contact-section {
+    flex-wrap: wrap;
+  }
+
+  .contact-section .contact-link {
+    margin-left: 0;
+  }
+
+  .product-section::before {
+    right: -28px;
+    padding: 3px 32px;
+    font-size: 10px;
+  }
+}
