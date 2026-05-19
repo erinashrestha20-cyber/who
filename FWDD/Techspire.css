@@ -1,9 +1,25 @@
 nav{
-    background-color: red;
-    color: black;
-    margin: 10px;
-}
-.logo{
+    background-color: #1a1a2e;
+    padding:10px 20px;
     color: white;
-    background: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.nav-links{
+    display: flex;
+     gap: 20px;   /* mixture of gap between row and columns */
+}
+
+.nav-links a{            /* it is used to style anchor*/    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
 }
