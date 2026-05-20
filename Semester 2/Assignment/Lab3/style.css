@@ -1,0 +1,25 @@
+body{
+    background-color: lightgray;
+    width: 80%;
+    padding:20px;
+}
+#intro{
+    font-size: 18px;
+    color: purple;
+    text-align:justify;
+}
+.text{
+    color:green;
+    padding: 10px;
+    margin: 10px;
+    text-align:justify;
+}
+.box{
+    border: 2px solid;
+    margin: 20px;
+    padding: 20px;
+    background:white;
+    text-align: center;
+    font-size: 2rem;
+}
+
