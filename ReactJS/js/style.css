@@ -1,0 +1,98 @@
+/* ── Page Layout ── */
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        padding: 50px;
+        background-color: #15202b;
+        color: white;
+      }
+
+      .tweet-container {
+        width: 400px;
+        background-color: #192734;
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid #38444d;
+      }
+
+      h2 {
+        margin-top: 0;
+        font-size: 18px;
+        color: #8899a6;
+      }
+
+      /* ── Textarea ── */
+      #tweet-input {
+        width: 100%;
+        height: 120px;
+        background-color: #253341;
+        color: white;
+        border: 1px solid #38444d;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        resize: none;
+        box-sizing: border-box;
+      }
+
+      #tweet-input:focus {
+        outline: none;
+        border-color: #1da1f2;
+      }
+
+      /* ── Counter & Button Row ── */
+      .bottom-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+      }
+
+      #char-counter {
+        font-size: 14px;
+        color: #2ecc71; /* green by default */
+      }
+
+      #post-btn {
+        background-color: #1da1f2;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 24px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      #post-btn:disabled {
+        background-color: #0e4d6e;
+        color: #5c7a8d;
+        cursor: not-allowed;
+      }
+
+      /* ── Draft Saved Message ── */
+      #draft-msg {
+        font-size: 13px;
+        color: #1da1f2;
+        margin-top: 10px;
+        height: 18px; /* prevent layout shift */
+      }
+
+      #clear-btn {
+        background-color: #1da1f2;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 24px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+       #clear-btn:disabled {
+        background-color: #0e4d6e;
+        color: #5c7a8d;
+        cursor: not-allowed;
+      }

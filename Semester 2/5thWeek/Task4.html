@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .Translate-container{
+            display: flex;
+            gap:30px;
+        }
+        .Box{
+            height: 130px;
+            width: 130px;
+            margin: 20px;
+             display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+        }
+        .Box1{
+            background-color: beige;
+            border: black solid;
+        }
+        .Box1:hover{
+            transform: translateX(50px);
+        }
+         .Box2{
+            background-color: lightblue;
+            border: black solid;
+        }
+        .Box2:hover{
+            transform: translateY(50px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Translate Transformation</h1>
+    <div class="Translate-container">
+        <div class="Box Box1">Box1</div>
+        <div class="Box Box2">Box2</div>
+    </div>
+</body>
+</html>
