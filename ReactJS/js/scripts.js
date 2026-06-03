@@ -7,7 +7,7 @@ const clearBtn = document.getElementById("clear-btn");
 
 const MAX_CHARS = 150;
 
-tweetInput.addEventListener("keyup", function(){
+tweetInput.addEventListener("keyup", function () {
     const currentLength = tweetInput.value.length;
 
     charCounter.textContent = currentLength + "/" + MAX_CHARS;
@@ -17,30 +17,30 @@ tweetInput.addEventListener("keyup", function(){
         // if length increase from 150
         charCounter.style.color = "#e74c3c";
         postBtn.disabled = true;
-    } else if (currentLength === 0){
+    } else if (currentLength === 0) {
         // if no text was written
         charCounter.style.color = "#2ecc71";
         postBtn.disabled = true;
     } else {
-            // if text value is less than 150 and is not 0
+        // if text value is less than 150 and is not 0
         charCounter.style.color = "#2ecc71";
         postBtn.disabled = false;
     }
 });
 
-tweetInput.addEventListener("change",function(){
+tweetInput.addEventListener("change", function () {
 
-    if(tweetInput.value.length > 0){
+    if (tweetInput.value.length > 0) {
         draftMsg.textContent = "Draft Saved!";
 
-        setTimeout(function(){
+        setTimeout(function () {
             draftMsg.textContent = "";
         }, 2000);
     }
 
 });
 
-postBtn.addEventListener("click",function(){
+postBtn.addEventListener("click", function () {
     const tweetText = tweetInput.value;
 
     alert("You posted:" + tweetText);
@@ -52,7 +52,7 @@ postBtn.addEventListener("click",function(){
     draftMsg.textContent = "";
 });
 
-clearBtn.addEventListener("click", function(){
+clearBtn.addEventListener("click", function () {
 
     // clear the input field
     tweetInput.value = "";
@@ -68,20 +68,19 @@ clearBtn.addEventListener("click", function(){
 
     // clear draft message
     draftMsg.textContent = "";
-  
+
 });
 
-tweetInput.addEventListener("keyup", function(){
+tweetInput.addEventListener("keyup", function () {
 
-const currentLength = tweetInput.value.length;
+    const currentLength = tweetInput.value.length;
 
-charCounter.textContent = currentLength + "/" + MAX_CHARS;
+    charCounter.textContent = currentLength + "/" + MAX_CHARS;
 
     // enable/disable clear button
-    if(currentLength === 0){
+    if (currentLength === 0) {
         clearBtn.disabled = true;
-    }
-    else{
+    } else {
         clearBtn.disabled = false;
     }
 
