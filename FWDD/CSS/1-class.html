@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bottom_house{
+            width: 300px;
+            height: 200px;
+            background: wheat;
+            position: relative;
+        }
+
+        .house{
+            width: 300px;
+            margin: 100px auto;
+        }
+
+        .bottom_house{
+            width: 300px;
+            height: 200px;
+            background: wheat;
+            position: relative;
+        }
+        
+        .window{
+            width: 60px;
+            height: 60px;
+            background: lightblue;
+            position: absolute;
+
+            border: 3px solid black;
+            top: 40px;
+        }
+
+        .left-window{
+            left: 40px;
+        }
+
+        .right-window{
+            right: 40px;
+        }
+
+        .door{
+            height: 120px;
+            width: 70px;
+            background: brown;
+            position: absolute;
+            bottom: 0;
+            left: 115px;
+        }
+
+        .roof{
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 120px solid brown;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="house">
+
+        <div class="roof"></div>
+
+        <div class="bottom_house">
+
+            <div class="window left-window"></div>
+
+            <div class="window right-window"></div>
+
+            <div class="door"></div>
+        </div>
+    </div>
+</body>
+</html>
