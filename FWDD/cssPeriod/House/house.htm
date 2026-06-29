@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hut in the Countryside</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* ========== SKY ========== */
+        .sky {
+            position: relative;
+            width: 100%;
+            height: 65%;
+            background: linear-gradient(to bottom, #1E90FF 0%, #87CEEB 50%, #B0E0E6 100%);
+            overflow: hidden;
+        }
+
+        /* ========== SUN ========== */
+        .sun {
+            position: absolute;
+            top: 40px;
+            right: 80px;
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #FFD700 20%, #FFA500 60%, #FF8C00 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #FFD700, 0 0 80px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Sun rays */
+        .sun::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: -25px;
+            right: -25px;
+            bottom: -25px;
+            border-radius: 50%;
+            background: repeating-conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                transparent 12deg,
+                rgba(255, 215, 0, 0.15) 12deg,
+                rgba(255, 215, 0, 0.15) 18deg
+            );
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========== CLOUDS ========== */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.95;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+        }
+
+        .cloud1 {
+            width: 120px;
+            height: 40px;
+            top: 60px;
+            left: 15%;
+            animation: float 30s linear infinite;
+        }
+
+        .cloud1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 15px;
+        }
+
+        .cloud1::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 15px;
+        }
+
+        .cloud2 {
+            width: 100px;
+            height: 35px;
+            top: 130px;
+            left: 55%;
+            animation: float 35s linear infinite;
+        }
+
+        .cloud2::before {
+            width: 45px;
+            height: 45px;
+            top: -22px;
+            left: 20px;
+        }
+
+        .cloud2::after {
+            width: 55px;
+            height: 35px;
+            top: -12px;
+            right: 10px;
+        }
+
+        .cloud3 {
+            width: 140px;
+            height: 45px;
+            top: 40px;
+            left: 75%;
+            animation: float 40s linear infinite;
+        }
+
+        .cloud3::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 25px;
+        }
+
+        .cloud3::after {
+            width: 70px;
+            height: 45px;
+            top: -18px;
+            right: 20px;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-200px); }
+            100% { transform: translateX(calc(100vw + 200px)); }
+        }
+
+        /* ========== HILLS (Background) ========== */
+        .hill {
+            position: absolute;
+            bottom: 0;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .hill1 {
+            width: 500px;
+            height: 180px;
+            left: -150px;
+            background: linear-gradient(to top, #228B22, #32CD32);
+        }
+
+        .hill2 {
+            width: 600px;
+            height: 220px;
+            right: -200px;
+            background: linear-gradient(to top, #2E8B57, #3CB371);
+        }
+
+        .hill3 {
+            width: 400px;
+            height: 140px;
+            left: 35%;
+            background: linear-gradient(to top, #228B22, #2E8B57);
+        }
+
+        /* ========== GRASSLAND ========== */
+        .grassland {
+            position: relative;
+            width: 100%;
+            height: 35%;
+            background: linear-gradient(to bottom, #7CFC00 0%, #32CD32 30%, #228B22 70%, #006400 100%);
+            z-index: 2;
+        }
+
+        /* Grass texture */
+        .grassland::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 100, 0, 0.08) 2px,
+                rgba(0, 100, 0, 0.08) 4px
+            );
+        }
+
+        /* ========== HUT ========== */
+        .hut {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        /* Hut body */
+        .hut-body {
+            width: 180px;
+            height: 120px;
+            background: linear-gradient(to right, #D2691E, #CD853F, #D2691E);
+            position: relative;
+            border: 2px solid #8B4513;
+        }
+
+        /* Wood planks */
+        .hut-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 18px,
+                rgba(139, 69, 19, 0.4) 18px,
+                rgba(139, 69, 19, 0.4) 20px
+            );
+        }
+
+        /* Door */
+        .door {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 70px;
+            background: linear-gradient(to right, #654321, #8B6914, #654321);
+            border: 2px solid #3E2723;
+            border-radius: 25px 25px 0 0;
+        }
+
+        /* Door handle */
+        .door::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: 8px;
+            width: 6px;
+            height: 6px;
+            background: #FFD700;
+            border-radius: 50%;
+        }
+
+        /* Window */
+        .window {
+            position: absolute;
+            top: 25px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            background: #87CEEB;
+            border: 3px solid #8B4513;
+        }
+
+        /* Window cross */
+        .window::before,
+        .window::after {
+            content: '';
+            position: absolute;
+            background: #8B4513;
+        }
+
+        .window::before {
+            width: 2px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .window::after {
+            width: 100%;
+            height: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Roof */
+        .roof {
+            position: absolute;
+            top: -80px;
+            left: -20px;
+            width: 0;
+            height: 0;
+            border-left: 110px solid transparent;
+            border-right: 110px solid transparent;
+            border-bottom: 90px solid #8B0000;
+        }
+
+        /* Roof texture */
+        .roof::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -100px;
+            width: 200px;
+            height: 60px;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 8px,
+                rgba(0,0,0,0.2) 8px,
+                rgba(0,0,0,0.2) 10px
+            );
+        }
+
+        /* Chimney */
+        .chimney {
+            position: absolute;
+            top: -60px;
+            right: 10px;
+            width: 25px;
+            height: 50px;
+            background: linear-gradient(to right, #696969, #A9A9A9, #696969);
+            border: 1px solid #555;
+        }
+
+        /* Smoke */
+        .smoke {
+            position: absolute;
+            top: -90px;
+            right: 12px;
+        }
+
+        .smoke span {
+            position: absolute;
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: rgba(200, 200, 200, 0.7);
+            border-radius: 50%;
+            animation: smokeRise 3s linear infinite;
+        }
+
+        .smoke span:nth-child(1) { animation-delay: 0s; }
+        .smoke span:nth-child(2) { animation-delay: 0.8s; left: 5px; }
+        .smoke span:nth-child(3) { animation-delay: 1.6s; left: -5px; }
+
+        @keyframes smokeRise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-70px) scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* ========== TREE ========== */
+        .tree {
+            position: absolute;
+            bottom: 25%;
+            left: 12%;
+            z-index: 3;
+        }
+
+        /* Tree trunk */
+        .trunk {
+            width: 30px;
+            height: 100px;
+            background: linear-gradient(to right, #4E342E, #6D4C41, #4E342E);
+            margin: 0 auto;
+            position: relative;
+            border-radius: 0 0 3px 3px;
+        }
+
+        /* Trunk texture */
+        .trunk::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 8px;
+            width: 3px;
+            height: 50px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 2px;
+        }
+
+        /* Foliage */
+        .foliage {
+            position: relative;
+            margin-bottom: -10px;
+        }
+
+        .foliage-layer {
+            width: 0;
+            height: 0;
+            margin: 0 auto;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 70px solid #228B22;
+            position: relative;
+        }
+
+        .foliage-layer:nth-child(2) {
+            margin-top: -40px;
+            border-left-width: 50px;
+            border-right-width: 50px;
+            border-bottom-width: 60px;
+            border-bottom-color: #32CD32;
+        }
+
+        .foliage-layer:nth-child(3) {
+            margin-top: -35px;
+            border-left-width: 40px;
+            border-right-width: 40px;
+            border-bottom-width: 50px;
+            border-bottom-color: #228B22;
+        }
+
+        /* ========== GRASSES ========== */
+        .grass-patch {
+            position: absolute;
+            bottom: 30%;
+            z-index: 4;
+        }
+
+        .grass-blade {
+            position: absolute;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to top, #228B22, #32CD32);
+            border-radius: 50% 50% 0 0;
+            transform-origin: bottom center;
+        }
+
+        /* Grass near hut */
+        .grass-near-hut {
+            left: 48%;
+        }
+
+        .grass-near-hut .grass-blade:nth-child(1) { height: 22px; left: 0; transform: rotate(-10deg); }
+        .grass-near-hut .grass-blade:nth-child(2) { height: 28px; left: 8px; transform: rotate(5deg); }
+        .grass-near-hut .grass-blade:nth-child(3) { height: 18px; left: 15px; transform: rotate(-5deg); }
+        .grass-near-hut .grass-blade:nth-child(4) { height: 25px; left: 22px; transform: rotate(8deg); }
+        .grass-near-hut .grass-blade:nth-child(5) { height: 20px; left: 30px; transform: rotate(-3deg); }
+
+        /* Grass near tree */
+        .grass-near-tree {
+            left: 10%;
+        }
+
+        .grass-near-tree .grass-blade:nth-child(1) { height: 18px; left: 0; transform: rotate(-8deg); }
+        .grass-near-tree .grass-blade:nth-child(2) { height: 24px; left: 6px; transform: rotate(6deg); }
+        .grass-near-tree .grass-blade:nth-child(3) { height: 16px; left: 12px; transform: rotate(-4deg); }
+        .grass-near-tree .grass-blade:nth-child(4) { height: 22px; left: 18px; transform: rotate(10deg); }
+
+        /* Extra grass patches */
+        .grass-patch-1 { left: 68%; }
+        .grass-patch-1 .grass-blade:nth-child(1) { height: 20px; left: 0; transform: rotate(-6deg); }
+        .grass-patch-1 .grass-blade:nth-child(2) { height: 26px; left: 7px; transform: rotate(4deg); }
+        .grass-patch-1 .grass-blade:nth-child(3) { height: 18px; left: 14px; transform: rotate(-8deg); }
+
+        .grass-patch-2 { left: 82%; }
+        .grass-patch-2 .grass-blade:nth-child(1) { height: 23px; left: 0; transform: rotate(5deg); }
+        .grass-patch-2 .grass-blade:nth-child(2) { height: 28px; left: 6px; transform: rotate(-5deg); }
+        .grass-patch-2 .grass-blade:nth-child(3) { height: 20px; left: 12px; transform: rotate(8deg); }
+
+        .grass-patch-3 { left: 28%; }
+        .grass-patch-3 .grass-blade:nth-child(1) { height: 20px; left: 0; transform: rotate(-7deg); }
+        .grass-patch-3 .grass-blade:nth-child(2) { height: 25px; left: 5px; transform: rotate(6deg); }
+
+        /* ========== FLOWERS ========== */
+        .flower {
+            position: absolute;
+            bottom: 32%;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            z-index: 4;
+        }
+
+        .flower::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 3px;
+            width: 2px;
+            height: 12px;
+            background: #228B22;
+        }
+
+        .flower-1 { left: 47%; background: #FF69B4; }
+        .flower-2 { left: 14%; background: #FFD700; }
+        .flower-3 { left: 71%; background: #FF6347; }
+        .flower-4 { left: 85%; background: #DA70D6; }
+        .flower-5 { left: 30%; background: #FF1493; }
+
+        /* ========== BIRDS ========== */
+        .bird {
+            position: absolute;
+            top: 100px;
+            z-index: 5;
+            animation: fly 18s linear infinite;
+        }
+
+        .bird::before,
+        .bird::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 3px;
+            background: #333;
+            border-radius: 50%;
+        }
+
+        .bird::before {
+            transform: rotate(-20deg);
+            animation: wingFlap 0.4s ease-in-out infinite alternate;
+        }
+
+        .bird::after {
+            left: 12px;
+            transform: rotate(20deg);
+            animation: wingFlap 0.4s ease-in-out infinite alternate-reverse;
+        }
+
+        .bird1 { left: -50px; animation-delay: 0s; }
+        .bird2 { left: -50px; top: 140px; animation-delay: 8s; }
+
+        @keyframes fly {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(30vw) translateY(-15px); }
+            50% { transform: translateX(60vw) translateY(8px); }
+            75% { transform: translateX(90vw) translateY(-10px); }
+            100% { transform: translateX(120vw) translateY(0); }
+        }
+
+        @keyframes wingFlap {
+            from { transform: rotate(-35deg); }
+            to { transform: rotate(-5deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sky Section -->
+    <div class="sky">
+        <!-- Sun -->
+        <div class="sun"></div>
+
+        <!-- Clouds -->
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+
+        <!-- Birds -->
+        <div class="bird bird1"></div>
+        <div class="bird bird2"></div>
+
+        <!-- Background Hills (at bottom of sky) -->
+        <div class="hill hill1"></div>
+        <div class="hill hill2"></div>
+        <div class="hill hill3"></div>
+    </div>
+
+    <!-- Grassland Section -->
+    <div class="grassland">
+        <!-- Tree -->
+        <div class="tree">
+            <div class="foliage">
+                <div class="foliage-layer"></div>
+                <div class="foliage-layer"></div>
+                <div class="foliage-layer"></div>
+            </div>
+            <div class="trunk"></div>
+        </div>
+
+        <!-- Hut -->
+        <div class="hut">
+            <div class="roof"></div>
+            <div class="chimney"></div>
+            <div class="smoke">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="hut-body">
+                <div class="window"></div>
+                <div class="door"></div>
+            </div>
+        </div>
+
+        <!-- Grass patches -->
+        <div class="grass-patch grass-near-hut">
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+        </div>
+
+        <div class="grass-patch grass-near-tree">
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+        </div>
+
+        <div class="grass-patch grass-patch-1">
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+        </div>
+
+        <div class="grass-patch grass-patch-2">
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+        </div>
+
+        <div class="grass-patch grass-patch-3">
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+        </div>
+
+        <!-- Flowers -->
+        <div class="flower flower-1"></div>
+        <div class="flower flower-2"></div>
+        <div class="flower flower-3"></div>
+        <div class="flower flower-4"></div>
+        <div class="flower flower-5"></div>
+    </div>
+</body>
+</html>

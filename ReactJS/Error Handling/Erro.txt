@@ -1,0 +1,33 @@
+// Types            What happens                                   Caught by try-Catch
+// Syntax error     before the code runs(typo in the grammar)    const x = ;                        No-code never start 
+// Runtime error    While the code runs                          Object.property on undefined              Yes
+// Logical error    Code runs fine but the result is wrong       total=price(should be*)         NO-there's no "error" to catch
+
+
+// Built-in Error
+// reference error- error which occurs when the variable doesn't exist
+// TypeError -  undefined type of variable
+// RangeError - when index is out of Range
+// SyntaxError - invalid js grammar
+
+// Error are handled according to its name and message that pops out 
+// at last when we try to run code
+
+
+// Try Catch
+// -it consist of any code which may have error
+
+// how to use it
+// try(
+//     //code that might have error
+// ) catch(error)(
+//     //type of error
+// ) finally(
+//     // it runs always whether or not there is error
+// )
+
+
+try runs ==> no error ===> finally ===> continue
+or
+or ====> error thrown ===> catch runs ===> continue
+

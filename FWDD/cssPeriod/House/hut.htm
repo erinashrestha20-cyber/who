@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Hut</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        /* ===== SKY ===== */
+        .sky {
+            position: relative;
+            width: 100%;
+            height: 65%;
+            background: linear-gradient(to bottom, #1E90FF 0%, #87CEEB 100%);
+            overflow: hidden;
+        }
+
+        /* ===== SUN ===== */
+        .sun {
+            position: absolute;
+            top: 40px;
+            right: 100px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, yellow, orange);
+            border-radius: 50%;
+            box-shadow: 0 0 40px yellow, 0 0 80px orange;
+        }
+
+        /* ===== CLOUD ===== */
+        .cloud {
+            position: absolute;
+            top: 60px;
+            left: 100px;
+            width: 100px;
+            height: 40px;
+            background: white;
+            border-radius: 100px;
+            animation: float 20s linear infinite;
+        }
+
+        .cloud::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            top: -25px;
+            left: 15px;
+        }
+
+        .cloud::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            top: -15px;
+            right: 15px;
+        }
+
+        @keyframes float {
+            0% { left: -150px; }
+            100% { left: 100%; }
+        }
+
+        /* ===== GRASSLAND ===== */
+        .grassland {
+            position: relative;
+            width: 100%;
+            height: 35%;
+            background: linear-gradient(to bottom, #7CFC00, #228B22);
+        }
+
+        /* ===== TREE ===== */
+        .tree {
+            position: absolute;
+            bottom: 30%;
+            left: 15%;
+        }
+
+        .trunk {
+            width: 30px;
+            height: 80px;
+            background: brown;
+            margin: 0 auto;
+        }
+
+        .leaves {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 70px solid green;
+            margin-bottom: -20px;
+        }
+
+        /* ===== HUT ===== */
+        .hut {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .roof {
+            position: absolute;
+            top: -70px;
+            left: -20px;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 80px solid #8B0000;
+        }
+
+        .chimney {
+            position: absolute;
+            top: -50px;
+            right: 15px;
+            width: 20px;
+            height: 40px;
+            background: gray;
+            border: 1px solid #555;
+        }
+
+        .smoke {
+            position: absolute;
+            top: -70px;
+            right: 18px;
+        }
+
+        .smoke span {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(200, 200, 200, 0.6);
+            border-radius: 50%;
+            animation: smokeRise 2s linear infinite;
+        }
+
+        .smoke span:nth-child(2) { animation-delay: 0.7s; left: 5px; }
+        .smoke span:nth-child(3) { animation-delay: 1.4s; left: -3px; }
+
+        @keyframes smokeRise {
+            0% { transform: translateY(0); opacity: 0.6; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
+
+        .hut-body {
+            width: 160px;
+            height: 100px;
+            background: #D2691E;
+            border: 2px solid #8B4513;
+            position: relative;
+        }
+
+        .window {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            width: 30px;
+            height: 30px;
+            background: #87CEEB;
+            border: 3px solid #8B4513;
+        }
+
+        .window::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: #8B4513;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .window::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #8B4513;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .door {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 60px;
+            background: #654321;
+            border: 2px solid #3E2723;
+            border-radius: 25px 25px 0 0;
+        }
+
+        /* ===== GRASS BLADES ===== */
+        .grass-patch {
+            position: absolute;
+            bottom: 32%;
+            left: 45%;
+        }
+
+        .grass-blade {
+            position: absolute;
+            bottom: 0;
+            width: 4px;
+            background: green;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .grass-blade:nth-child(1) { left: 0; transform: rotate(-10deg); height: 18px; }
+        .grass-blade:nth-child(2) { left: 8px; transform: rotate(5deg); height: 25px; }
+        .grass-blade:nth-child(3) { left: 15px; transform: rotate(-5deg); height: 20px; }
+    </style>
+</head>
+<body>
+    <!-- SKY -->
+    <div class="sky">
+        <div class="sun"></div>
+        <div class="cloud"></div>
+    </div>
+
+    <!-- GRASSLAND -->
+    <div class="grassland">
+        <!-- TREE -->
+        <div class="tree">
+            <div class="leaves"></div>
+            <div class="trunk"></div>
+        </div>
+
+        <!-- HUT -->
+        <div class="hut">
+            <div class="roof"></div>
+            <div class="chimney"></div>
+            <div class="smoke">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="hut-body">
+                <div class="window"></div>
+                <div class="door"></div>
+            </div>
+        </div>
+
+        <!-- GRASS -->
+        <div class="grass-patch">
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+            <div class="grass-blade"></div>
+        </div>
+    </div>
+</body>
+</html>

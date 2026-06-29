@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 200px;
+            width: 800px;
+            border: 2px solid black;
+            position: relative;
+            align-content: center;
+        }
+
+        .circle{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            border: 1px solid black;
+            animation: moveBox 5s ease-in infinite;
+            position: absolute;
+            background-color: red;
+        }
+
+        @keyframes moveBox{
+            from{
+                left:0;
+            }
+
+            to{
+                left:680px;
+            }
+        } 
+    </style>
+</head>
+<body>
+    <div class="box">
+         <div class="circle"></div>
+    </div>
+    
+</body>
+</html>
