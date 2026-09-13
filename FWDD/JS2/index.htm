@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Student Result Management System</h1>
+
+        <!-- Welcome Message -->
+        <h3 id="welcome"></h3>
+
+        <!-- Date and Time -->
+        <div class="info-box">
+            <p><strong>Date:</strong> <span id="currentDate"></span></p>
+            <p><strong>Time:</strong> <span id="currentTime"></span></p>
+        </div>
+
+        <!-- Screen Information -->
+        <div class="info-box">
+            <p><strong>Screen Width:</strong> <span id="screenWidth"></span></p>
+            <p><strong>Screen Height:</strong> <span id="screenHeight"></span></p>
+            <p><strong>Current URL:</strong> <span id="pageURL"></span></p>
+        </div>
+
+        <!-- Dark Mode -->
+        <button id="darkBtn" onclick="toggleDarkMode()">Dark Mode</button>
+
+        <hr>
+
+        <!-- Student Form -->
+
+        <h2>Add Student</h2>
+
+        <form id="studentForm">
+
+            <label>Student Name</label><br>
+            <input type="text" id="name" placeholder="Enter Student Name"><br><br>
+
+            <label>Roll Number</label><br>
+            <input type="text" id="roll" placeholder="Enter Roll Number"><br><br>
+
+            <label>Subject</label><br>
+            <input type="text" id="subject" placeholder="Enter Subject"><br><br>
+
+            <label>Marks</label><br>
+            <input type="number" id="marks" placeholder="Enter Marks"><br><br>
+
+            <button type="button" onclick="addStudent()">
+                Add Student
+            </button>
+
+        </form>
+
+        <hr>
+
+        <!-- Search -->
+
+        <h2>Search Student</h2>
+
+        <input type="text" id="searchRoll" placeholder="Enter Roll Number">
+
+        <button onclick="searchStudent()">
+            Search
+        </button>
+
+        <p id="searchResult"></p>
+
+        <hr>
+
+        <!-- Delete -->
+
+        <h2>Delete Student</h2>
+
+        <input type="text" id="deleteRoll" placeholder="Enter Roll Number">
+
+        <button onclick="deleteStudent()">
+            Delete
+        </button>
+
+        <hr>
+
+        <!-- Statistics -->
+
+        <h2>Statistics</h2>
+
+        <p>Total Students :
+            <span id="totalStudents">0</span>
+        </p>
+
+        <p>Average Marks :
+            <span id="averageMarks">0</span>
+        </p>
+
+        <p>Highest Marks Student :
+            <span id="highestStudent">None</span>
+        </p>
+
+        <hr>
+
+        <!-- Student Records -->
+
+        <h2>Student Records</h2>
+
+        <table id="studentTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Roll No</th>
+
+                    <th>Subject</th>
+
+                    <th>Marks</th>
+
+                    <th>Grade</th>
+
+                    <th>Result</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

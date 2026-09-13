@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="report"></p>
+    <script>
+        let studentName = "Sita";
+let marks = 85;
+
+
+// Function to calculate grade
+function calculateGrade(marks) {
+
+    if(marks >= 80) {
+        return "A";
+    }
+    else if(marks >= 70) {
+        return "B";
+    }
+    else if(marks >= 60) {
+        return "C";
+    }
+    else if(marks >= 40) {
+        return "D";
+    }
+    else {
+        return "F";
+    }
+}
+
+
+// if else for Pass/Fail
+let result;
+
+if(marks >= 40) {
+    result = "PASS";
+}
+else {
+    result = "FAIL";
+}
+
+
+// Display using innerHTML
+
+document.getElementById("report").innerHTML = `
+    <h2>Student Report</h2>
+    Name : ${studentName}<br>
+    Marks : ${marks}<br>
+    Grade : ${calculateGrade(marks)}<br>
+    Result : ${result}
+`;
+    </script>
+</body>
+</html>

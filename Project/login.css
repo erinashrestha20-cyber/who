@@ -1,0 +1,9 @@
+.container{
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid whitesmoke;
+    
+}

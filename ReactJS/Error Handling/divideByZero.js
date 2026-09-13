@@ -1,11 +1,11 @@
 function divide(a,b){
     try{
         if (b === 0){
-            throw new Error("Cannot divide by zero");
+            throw new Error("Cannot divide by zero!");
         }
         console.log(a + "/" + b + "=" + (a /b));
     } catch (error) {
-        console.log("Error: " + error.message);
+        console.log("Error: " + error.message + " (Name: " + error.name + ")");
     }
 }
 

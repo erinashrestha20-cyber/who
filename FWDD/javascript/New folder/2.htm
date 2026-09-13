@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        let name = prompt("Enter your name:");
+        let age = Number(prompt("Enter your age:"));
+        let college = prompt("Enter your college:");
+
+        document.getElementById("demo").innerHTML =age
+        "<b>Student Information</b> <br><br>" +
+        "Name: " + name + "<br>" +
+        "Age: "  + age + "<br>" +
+        "College: " + college + "<br>";
+
+        age = Number(prompt("Enter the updated age: "))
+
+        document.getElementbyId("demo").innerHTML +=age
+        "<b>After Updating Age</b> <br></br>" +
+        "Name: " + name + "<br>" +
+        "Age: " + name + "<br>" +
+        "College: " + college;
+    </script>
+</body>
+</html>

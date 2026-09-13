@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="output"></p>
+    <script>
+        let a = Number(prompt("Enter a number:"));
+        let b = Number(prompt("Enter a number:"));
+
+        
+        document.getElementById("output").innerHTML = 
+        "a: " + a + "<br>" +   
+        "b: " + b + "<br>" +                                                       
+
+        "a == b : " + (a == b) + "<br>" +
+         "a != b : " + (a != b) + "<br>" +
+          "a > b : " + (a > b) + "<br>" +
+           "a < b : " + (a < b) + "<br>" +
+            "a >= b : " + (a >= b) + "<br>" +
+             "a <= b : " + (a <= b);
+    </script>
+    
+</body>
+</html>
